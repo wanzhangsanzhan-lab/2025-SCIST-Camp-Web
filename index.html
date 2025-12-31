@@ -8,8 +8,8 @@
         :root {
             --primary: #00ff9d; /* Cyberpunk Green */
             --secondary: #bd00ff; /* Accent Purple */
-            --bg-dark: #0a0a0a;
-            --card-bg: #1a1a1a;
+            --bg-dark: #050505;
+            --card-bg: #111;
             --text-main: #f0f0f0;
             --text-muted: #a0a0a0;
         }
@@ -20,6 +20,11 @@
             color: var(--text-main);
             margin: 0;
             line-height: 1.6;
+            /* Cyberpunk Grid Background */
+            background-image: 
+                linear-gradient(rgba(0, 255, 157, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 255, 157, 0.03) 1px, transparent 1px);
+            background-size: 30px 30px;
         }
 
         /* 導覽列 */
@@ -28,22 +33,24 @@
             justify-content: space-between;
             align-items: center;
             padding: 1rem 5%;
-            background: rgba(10, 10, 10, 0.95);
+            background: rgba(5, 5, 5, 0.9);
+            backdrop-filter: blur(10px);
             position: sticky;
             top: 0;
             z-index: 1000;
             border-bottom: 1px solid #333;
         }
-        .logo { font-size: 1.5rem; font-weight: 700; color: var(--text-main); }
-        .logo span { color: var(--primary); }
+        .logo { font-size: 1.5rem; font-weight: 700; color: var(--text-main); letter-spacing: 2px;}
+        .logo span { color: var(--primary); text-shadow: 0 0 10px rgba(0,255,157,0.5); }
         .nav-links a {
             color: var(--text-main);
             text-decoration: none;
             margin-left: 2rem;
             font-weight: 500;
             transition: color 0.3s;
+            font-size: 0.95rem;
         }
-        .nav-links a:hover { color: var(--primary); }
+        .nav-links a:hover { color: var(--primary); text-shadow: 0 0 5px var(--primary); }
         .btn-register {
             background: var(--primary);
             color: #000 !important;
@@ -51,25 +58,32 @@
             border-radius: 4px;
             font-weight: bold;
             text-decoration: none;
+            box-shadow: 0 0 15px rgba(0,255,157,0.4);
+            transition: transform 0.2s;
         }
+        .btn-register:hover { transform: scale(1.05); }
 
         /* 主視覺 Hero */
         .hero {
-            height: 90vh;
+            min-height: 90vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            background: radial-gradient(circle at center, #1a2a20 0%, #0a0a0a 70%);
+            background: radial-gradient(circle at center, rgba(0,255,157,0.05) 0%, transparent 70%);
             padding: 0 20px;
+            position: relative;
         }
         .hero h1 {
-            font-size: 4rem;
+            font-size: 4.5rem;
             margin: 0;
+            text-transform: uppercase;
+            letter-spacing: -2px;
             background: linear-gradient(90deg, #fff, var(--primary));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 20px rgba(0,255,157,0.3);
         }
         .hero p { font-size: 1.2rem; color: var(--text-muted); max-width: 600px; margin: 20px 0; }
         .hero-info {
@@ -79,11 +93,37 @@
             font-family: monospace;
             color: var(--primary);
             font-size: 1.1rem;
+            border: 1px solid #333;
+            padding: 10px 20px;
+            border-radius: 30px;
+            background: rgba(0,0,0,0.5);
         }
+
+        /* 倒數計時器 */
+        .countdown-box {
+            margin: 30px 0;
+            display: flex;
+            gap: 20px;
+        }
+        .time-unit {
+            text-align: center;
+            background: rgba(255,255,255,0.05);
+            padding: 10px 20px;
+            border-radius: 8px;
+            border: 1px solid #333;
+        }
+        .time-val { font-size: 2rem; font-weight: bold; color: var(--primary); font-family: monospace;}
+        .time-label { font-size: 0.8rem; color: #888; text-transform: uppercase; }
 
         /* 區塊通用 */
         section { padding: 80px 10%; }
-        h2 { font-size: 2.5rem; border-left: 4px solid var(--primary); padding-left: 1rem; margin-bottom: 3rem; }
+        h2 { 
+            font-size: 2.5rem; 
+            border-left: 5px solid var(--primary); 
+            padding-left: 1.5rem; 
+            margin-bottom: 3rem; 
+            text-transform: uppercase;
+        }
 
         /* 格狀佈局 */
         .grid {
@@ -95,53 +135,95 @@
             background: var(--card-bg);
             padding: 2rem;
             border-radius: 12px;
-            border: 1px solid #333;
-            transition: transform 0.3s;
+            border: 1px solid #222;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
         }
-        .card:hover { transform: translateY(-5px); border-color: var(--primary); }
+        .card:hover { 
+            transform: translateY(-5px); 
+            border-color: var(--primary); 
+            box-shadow: 0 10px 30px -10px rgba(0,255,157,0.1);
+        }
         .card h3 { color: var(--primary); margin-top: 0; }
         .tag {
             display: inline-block;
-            background: #333;
-            padding: 4px 8px;
+            background: #222;
+            padding: 4px 10px;
             border-radius: 4px;
             font-size: 0.8rem;
             margin-bottom: 1rem;
             color: #fff;
+            border: 1px solid #333;
         }
+
+        /* FAQ (手風琴效果) */
+        .faq-item {
+            background: var(--card-bg);
+            margin-bottom: 15px;
+            border-radius: 8px;
+            border: 1px solid #222;
+            overflow: hidden;
+        }
+        .faq-question {
+            padding: 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: bold;
+            color: #fff;
+        }
+        .faq-question:hover { color: var(--primary); }
+        .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            color: #aaa;
+            font-size: 0.95rem;
+            border-top: 1px solid transparent;
+        }
+        .faq-item.active .faq-answer {
+            padding: 20px;
+            max-height: 200px; /* 預估高度 */
+            border-top: 1px solid #333;
+        }
+        .faq-item.active .faq-question { color: var(--primary); }
 
         /* 課表 */
         .schedule-row {
             display: flex;
-            border-bottom: 1px solid #333;
+            border-bottom: 1px solid #222;
             padding: 1.5rem 0;
             flex-wrap: wrap;
         }
-        .time { width: 150px; font-family: monospace; color: var(--primary); font-size: 1.1rem; }
+        .time { width: 150px; font-family: monospace; color: var(--secondary); font-size: 1.1rem; font-weight: bold;}
         .content { flex: 1; min-width: 300px; }
-        .content h4 { margin: 0 0 0.5rem 0; }
-        .location { font-size: 0.9rem; color: var(--text-muted); }
+        .content h4 { margin: 0 0 0.5rem 0; color: #fff; }
+        .location { font-size: 0.9rem; color: var(--text-muted); display: flex; align-items: center; gap: 5px;}
 
         /* 報名區塊 */
         .cta-section {
-            background: linear-gradient(45deg, #1a1a1a, #0f0f0f);
+            background: linear-gradient(135deg, #111, #0a0a0a);
             text-align: center;
             border-top: 1px solid #333;
+            position: relative;
         }
         .price-tag {
             font-size: 3rem;
             font-weight: bold;
             color: var(--primary);
             margin: 1rem 0;
+            text-shadow: 0 0 20px rgba(0,255,157,0.2);
         }
-        .price-note { color: var(--text-muted); font-size: 0.9rem; }
 
         footer {
             text-align: center;
-            padding: 2rem;
+            padding: 3rem;
             background: #000;
-            color: #666;
-            font-size: 0.9rem;
+            color: #555;
+            font-size: 0.85rem;
             border-top: 1px solid #222;
         }
     </style>
@@ -151,25 +233,45 @@
     <nav>
         <div class="logo">SCIST <span>2026</span></div>
         <div class="nav-links">
-            <a href="#about">活動簡介</a>
-            <a href="#speakers">講師陣容</a>
-            <a href="#schedule">活動議程</a>
-            <a href="#register" class="btn-register">立即報名</a>
+            <a href="#about">Tracks</a>
+            <a href="#schedule">Schedule</a>
+            <a href="#faq">FAQ</a>
+            <a href="#register" class="btn-register">JOIN NOW</a>
         </div>
     </nav>
 
     <header class="hero">
         <div class="hero-info">
             <span>📅 2026.02.05 - 02.08</span>
-            <span>📍 NCKU & Tainan Senior High</span>
+            <span>📍 NCKU & Tainan</span>
         </div>
         <h1>WINTER CAMP 2026</h1>
-        <p>南臺灣最大學生資訊社群聯合寒訓。<br>Web 前端 x Discord Bot x AI 人工智慧，四天密集實戰。</p>
-        <p style="color: var(--primary); border: 1px solid var(--primary); padding: 5px 15px; border-radius: 20px; display: inline-block;">
-            NCKU 114-1 Capstone Project
+        <p>Web 前端 x Discord Bot x AI 人工智慧，四天密集實戰。</p>
+        
+        <div class="countdown-box" id="countdown">
+            <div class="time-unit">
+                <div class="time-val" id="days">00</div>
+                <div class="time-label">Days</div>
+            </div>
+            <div class="time-unit">
+                <div class="time-val" id="hours">00</div>
+                <div class="time-label">Hours</div>
+            </div>
+            <div class="time-unit">
+                <div class="time-val" id="minutes">00</div>
+                <div class="time-label">Mins</div>
+            </div>
+            <div class="time-unit">
+                <div class="time-val" id="seconds">00</div>
+                <div class="time-label">Secs</div>
+            </div>
+        </div>
+
+        <p style="color: var(--primary); border: 1px solid var(--primary); padding: 5px 15px; border-radius: 20px; font-size: 0.8rem; letter-spacing: 1px;">
+            NCKU 114-1 CAPSTONE PROJECT
         </p>
         <br>
-        <a href="#register" class="btn-register" style="padding: 15px 40px; font-size: 1.1rem; margin-top: 20px; display:inline-block;">查看詳細資訊</a>
+        <a href="#register" class="btn-register" style="padding: 15px 50px; font-size: 1.2rem;">查看詳細資訊</a>
     </header>
 
     <section id="about">
@@ -186,42 +288,21 @@
                 <p>結合 Python 與 Discord API，學習邏輯判斷與自動化機器人開發。</p>
             </div>
             <div class="card">
-                <span class="tag">Artificial Intelligence</span>
+                <span class="tag">AI / ML</span>
                 <h3>AI 入門導論</h3>
                 <p>探索 Machine Learning 與 Deep Learning 基礎，了解 Transformer 與擴散模型原理。</p>
             </div>
         </div>
     </section>
 
-    <section id="speakers">
-        <h2>Featured Speakers</h2>
-        <div class="grid">
-            <div class="card">
-                <h3>陳威達 (Ice River)</h3>
-                <p class="role" style="color:#888;">Web Track Lecturer</p>
-                <p>SITCON 開發組組長、APCS Guide 創辦人。擅長前端開發與使用者體驗設計。</p>
-            </div>
-            <div class="card">
-                <h3>黃宥睿 (OsGa)</h3>
-                <p class="role" style="color:#888;">Bot Track Lecturer</p>
-                <p>國立雲林科技大學資管系。SCAICT 中電會初始開發成員，豐富的 Discord Bot 教學經驗。</p>
-            </div>
-            <div class="card">
-                <h3>黃士育 (4Yu)</h3>
-                <p class="role" style="color:#888;">AI Track Lecturer</p>
-                <p>SCIST S5 總召。曾獲 FunAI 個人表現特優獎，專注於 AI 基礎教育與實作應用。</p>
-            </div>
-        </div>
-    </section>
-
     <section id="schedule">
-        <h2>Schedule Overview (4 Days)</h2>
+        <h2>Schedule Overview</h2>
         <div class="schedule-row">
             <div class="time">02/05 (Thu)</div>
             <div class="content">
                 <h4>Day 1: Foundation & Kickoff</h4>
                 <p>報到 / 開幕式 / Web 前端基礎 / 破冰活動</p>
-                <span class="location">地點：國立成功大學</span>
+                <span class="location">📌 地點：國立成功大學</span>
             </div>
         </div>
         <div class="schedule-row">
@@ -229,7 +310,7 @@
             <div class="content">
                 <h4>Day 2: Skill Building</h4>
                 <p>Discord Bot 實作 / API 串接教學 / 分組交流</p>
-                <span class="location">地點：國立臺南一中</span>
+                <span class="location">📌 地點：國立臺南一中</span>
             </div>
         </div>
         <div class="schedule-row">
@@ -237,7 +318,7 @@
             <div class="content">
                 <h4>Day 3: Advanced & Hackathon</h4>
                 <p>AI 應用課程 / 專題衝刺 Hackathon / 晚會</p>
-                <span class="location">地點：國立臺南二中 / 老曼船長</span>
+                <span class="location">📌 地點：國立臺南二中 / 老曼船長</span>
             </div>
         </div>
         <div class="schedule-row">
@@ -245,25 +326,55 @@
             <div class="content">
                 <h4>Day 4: Demo & Closing</h4>
                 <p>成果發表會 / 評審講評 / 結業式</p>
-                <span class="location">地點：國立成功大學</span>
+                <span class="location">📌 地點：國立成功大學</span>
+            </div>
+        </div>
+    </section>
+
+    <section id="faq">
+        <h2>FAQ 常見問題</h2>
+        <p style="color: #888; margin-bottom: 30px;">針對後勤與設備的常見疑問，這裡有解答。</p>
+        
+        <div class="faq-item">
+            <div class="faq-question">Q: 我需要自備筆電嗎？規格有要求嗎？ <span>+</span></div>
+            <div class="faq-answer">
+                A: 是的，請務必自備筆電。建議規格為 RAM 8GB 以上，作業系統 Windows/Mac/Linux 皆可。若筆電續航力不足，建議攜帶充電器（現場備有延長線）。
+            </div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">Q: 住宿環境如何？行李可以寄放嗎？ <span>+</span></div>
+            <div class="faq-answer">
+                A: 住宿地點為「老曼船長青年旅舍」，位於台南火車站內，交通便利。我們會協助安排最後一天的行李寄放，讓大家輕鬆參加成果發表。
+            </div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">Q: 我完全沒有程式基礎可以參加嗎？ <span>+</span></div>
+            <div class="faq-answer">
+                A: 可以！我們的課程設計包含「新手村」引導，講師與助教會從環境建置開始教學，只要有熱忱都歡迎報名。
+            </div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">Q: 報名費包含什麼？ <span>+</span></div>
+            <div class="faq-answer">
+                A: 費用包含四天的課程講師費、教材、四天午餐、平安保險費。若是購買「住宿票」，則額外包含三晚的住宿費用。
             </div>
         </div>
     </section>
 
     <section id="register" class="cta-section">
-        <h2>Join Us Now</h2>
+        <h2>Ready to Join?</h2>
         <p>名額有限，報名截止至 2025/12/31</p>
         
         <div class="grid" style="max-width: 800px; margin: 0 auto;">
             <div class="card" style="border-color: var(--primary);">
-                <h3>一般票</h3>
+                <h3>一般票 (General)</h3>
                 <div class="price-tag">NT$ 2,500</div>
-                <p>含 4 天課程、午餐、保險</p>
+                <p>含課程、午餐、保險</p>
             </div>
             <div class="card" style="border-color: var(--secondary);">
-                <h3>住宿票</h3>
+                <h3>住宿票 (With Stay)</h3>
                 <div class="price-tag">NT$ 4,500</div>
-                <p>含課程、午餐、保險 + <strong>三晚住宿 (老曼船長)</strong></p>
+                <p>含課程、午餐、保險 + <strong>三晚住宿</strong></p>
             </div>
         </div>
         <br><br>
@@ -272,8 +383,42 @@
 
     <footer>
         <p>© 2026 SCIST 南臺灣學生資訊社群. All Rights Reserved.</p>
-        <p>Project for NCKU 114-1 Capstone Course: Camp Design and Implementation with AI</p>
+        <p>Designed for NCKU 114-1 Capstone Course: Camp Design and Implementation with AI.</p>
     </footer>
+
+    <script>
+        // FAQ Accordion Logic
+        const faqItems = document.querySelectorAll('.faq-item');
+        faqItems.forEach(item => {
+            item.querySelector('.faq-question').addEventListener('click', () => {
+                item.classList.toggle('active');
+            });
+        });
+
+        // Countdown Logic (Target: 2025/12/31)
+        const deadline = new Date("Dec 31, 2025 23:59:59").getTime();
+        
+        const x = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = deadline - now;
+            
+            if (distance < 0) {
+                clearInterval(x);
+                document.getElementById("countdown").innerHTML = "<div style='font-size:1.5rem; color:var(--primary); border:1px solid var(--primary); padding:10px;'>REGISTRATION CLOSED</div>";
+                return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("days").innerText = days < 10 ? "0" + days : days;
+            document.getElementById("hours").innerText = hours < 10 ? "0" + hours : hours;
+            document.getElementById("minutes").innerText = minutes < 10 ? "0" + minutes : minutes;
+            document.getElementById("seconds").innerText = seconds < 10 ? "0" + seconds : seconds;
+        }, 1000);
+    </script>
 
 </body>
 </html>
