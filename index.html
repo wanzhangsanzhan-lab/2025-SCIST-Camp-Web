@@ -195,13 +195,21 @@
         }
 
         /* FAQ */
+        .faq-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
         .faq-box {
             background: var(--card-bg);
             border: 1px solid #222;
             border-radius: 8px;
-            margin-bottom: 15px;
             overflow: hidden;
+            transition: border-color 0.3s;
         }
+        .faq-box:hover { border-color: #333; }
         .faq-q {
             padding: 20px;
             cursor: pointer;
@@ -209,8 +217,9 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            color: #fff;
         }
-        .faq-q:hover { background: #1a1a1a; color: var(--primary); }
+        .faq-q span { color: var(--primary); font-size: 1.2rem; }
         .faq-a {
             max-height: 0;
             overflow: hidden;
@@ -219,8 +228,9 @@
             color: #ccc;
             font-size: 0.95rem;
             line-height: 1.6;
+            border-top: 1px solid transparent;
         }
-        .faq-box.open .faq-a { max-height: 200px; padding-bottom: 20px; }
+        .faq-box.open .faq-a { max-height: 200px; padding-bottom: 20px; border-top: 1px solid #222; }
         .faq-box.open .faq-q { color: var(--primary); }
 
         /* CTA */
@@ -374,17 +384,40 @@
 
     <section id="faq">
         <h2>FAQ 常見問題</h2>
-        <div class="faq-box">
-            <div class="faq-q">Q: 需要具備程式基礎嗎？ <span>+</span></div>
-            <div class="faq-a">A: 不需要！我們的課程設計由淺入深，講師與助教會從環境建置開始引導，非常適合新手入門。</div>
-        </div>
-        <div class="faq-box">
-            <div class="faq-q">Q: 請問需要自備電腦嗎？ <span>+</span></div>
-            <div class="faq-a">A: 是的，請務必自備筆記型電腦（Windows/Mac 均可），並建議攜帶滑鼠與充電器。現場會提供電源插座與 Wi-Fi。</div>
-        </div>
-        <div class="faq-box">
-            <div class="faq-q">Q: 住宿環境與行李寄放？ <span>+</span></div>
-            <div class="faq-a">A: 住宿安排在台南火車站內的「老曼船長青年旅舍」。營期最後一天我們會安排行李寄放區，方便大家參加成果發表。</div>
+        <div class="faq-grid">
+            <div class="faq-box">
+                <div class="faq-q">Q: 需要具備程式基礎嗎？ <span>+</span></div>
+                <div class="faq-a">A: 不需要！我們的課程設計由淺入深，講師與助教會從環境建置開始引導，非常適合新手入門。</div>
+            </div>
+            <div class="faq-box">
+                <div class="faq-q">Q: 請問需要自備電腦嗎？ <span>+</span></div>
+                <div class="faq-a">A: 是的，請務必自備筆記型電腦（Windows/Mac 均可），並建議攜帶滑鼠與充電器。現場會提供電源插座與 Wi-Fi。</div>
+            </div>
+            <div class="faq-box">
+                <div class="faq-q">Q: 住宿環境與行李寄放？ <span>+</span></div>
+                <div class="faq-a">A: 住宿安排在台南火車站內的「老曼船長青年旅舍」。營期最後一天我們會安排行李寄放區，方便大家參加成果發表。</div>
+            </div>
+
+            <div class="faq-box">
+                <div class="faq-q">Q: 有特殊飲食習慣（如素食、過敏）怎麼辦？ <span>+</span></div>
+                <div class="faq-a">A: 別擔心！請在報名表單中勾選您的飲食需求，我們會為您準備專屬的素食便當或無過敏原餐點。</div>
+            </div>
+            <div class="faq-box">
+                <div class="faq-q">Q: 參加完會有證書嗎？對學習歷程有幫助嗎？ <span>+</span></div>
+                <div class="faq-a">A: 有的！全程參與並完成專題發表的學員，將獲得由 SCIST 與成大相關單位聯名核發的結業證書，非常適合作為學習歷程檔案的佐證。</div>
+            </div>
+            <div class="faq-box">
+                <div class="faq-q">Q: 上課前需要先安裝軟體嗎？ <span>+</span></div>
+                <div class="faq-a">A: 建議先安裝。我們會在營期前一週寄發「行前通知信」，內含 VS Code、Python 等環境的安裝教學影片，強烈建議您在家先試著安裝一次。</div>
+            </div>
+            <div class="faq-box">
+                <div class="faq-q">Q: 我可以跟朋友同一組嗎？ <span>+</span></div>
+                <div class="faq-a">A: 為了促進交流，我們原則上採隨機分組，這能讓你認識更多厲害的夥伴！但若有特殊需求，可在報名表備註，我們會視情況協調。</div>
+            </div>
+            <div class="faq-box">
+                <div class="faq-q">Q: 不同場地之間要怎麼移動？ <span>+</span></div>
+                <div class="faq-a">A: 營期第二天與第三天會移動到南一中與南二中。我們會安排工作人員統一帶隊，採取步行或大眾運輸方式移動，請務必聽從隊輔引導。</div>
+            </div>
         </div>
     </section>
 
@@ -429,6 +462,10 @@
         faqs.forEach(faq => {
             faq.querySelector('.faq-q').addEventListener('click', () => {
                 faq.classList.toggle('open');
+                // Optional: Close other FAQs when one opens
+                // faqs.forEach(otherFaq => {
+                //     if(otherFaq !== faq) otherFaq.classList.remove('open');
+                // });
             });
         });
 
