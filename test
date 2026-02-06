@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        /* CSS: 裝飾 */
+        body { font-family: sans-serif; text-align: center; padding: 50px; }
+        
+        .box {
+            background-color: #f0f0f0;
+            padding: 20px;
+            border-radius: 10px;
+            transition: 0.3s; /* 動畫過渡時間 */
+        }
+
+        /* 滑鼠移過去時變色 */
+        .box:hover {
+            background-color: #00ff9d; 
+            transform: scale(1.1); /* 放大 1.1 倍 */
+        }
+        
+        button { padding: 10px 20px; cursor: pointer; }
+    </style>
+</head>
+<body>
+
+    <div class="box">
+        <h1 id="title">你好，SCIST！</h1>
+        <p>這是我做的第一個網頁。</p>
+        <button onclick="changeText()">點我變身</button>
+    </div>
+
+    <script>
+        function changeText() {
+            // 找到 id 是 "title" 的元素，把它的文字改掉
+            document.getElementById("title").innerText = "你成功了！🚀";
+            alert("網頁說：歡迎加入開發者的行列！");
+        }
+    </script>
+
+</body>
+</html>
