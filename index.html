@@ -6,12 +6,12 @@
     <title>2026 SCIST Winter Camp | 南臺灣學生資訊社群</title>
     <style>
         :root {
-            /* SCIST 品牌色系：科技藍與資安綠 */
-            --primary: #4cc9f0; /* Cyber Blue */
-            --secondary: #7209b7; /* Deep Purple */
-            --accent: #f72585; /* Highlight Pink */
+            /* SCIST 品牌色系：更強調科技藍與資安綠 */
+            --primary: #00b4d8; /* SCIST Blue */
+            --secondary: #7209b7; 
+            --accent: #4cc9f0;
             --text-main: #f0f0f0;
-            --text-muted: #a0a0a0;
+            --text-muted: #aaaaaa;
             --bg-dark: #0f0f13;
             --card-bg: #1a1a20;
         }
@@ -23,8 +23,10 @@
             margin: 0;
             line-height: 1.6;
             background-image: 
-                radial-gradient(circle at 10% 20%, rgba(76, 201, 240, 0.05) 0%, transparent 20%),
-                radial-gradient(circle at 90% 80%, rgba(247, 37, 133, 0.05) 0%, transparent 20%);
+                linear-gradient(rgba(15, 15, 19, 0.9), rgba(15, 15, 19, 0.9)),
+                url("https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80");
+            background-size: cover;
+            background-attachment: fixed;
         }
 
         /* 導覽列 */
@@ -54,15 +56,18 @@
         .nav-links a:hover { color: var(--primary); }
         
         .btn-register {
-            background: linear-gradient(135deg, var(--primary), #4895ef);
+            background: var(--primary);
             color: #000 !important;
             padding: 0.6rem 1.8rem;
-            border-radius: 50px;
+            border-radius: 4px;
             font-weight: 700;
-            box-shadow: 0 4px 15px rgba(76, 201, 240, 0.3);
-            transition: transform 0.2s;
+            text-decoration: none;
+            transition: all 0.3s ease;
         }
-        .btn-register:hover { transform: translateY(-2px); }
+        .btn-register:hover { 
+            background: #fff;
+            transform: translateY(-2px);
+        }
 
         /* Hero */
         .hero {
@@ -73,126 +78,101 @@
             align-items: center;
             text-align: center;
             padding: 0 20px;
-            position: relative;
         }
         .hero h1 {
-            font-size: 3.8rem;
+            font-size: 3.5rem;
             margin: 0 0 20px 0;
             line-height: 1.2;
-            background: linear-gradient(90deg, #fff, var(--primary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            color: #fff;
+            text-shadow: 0 0 20px rgba(0, 180, 216, 0.5);
         }
-        .hero p { font-size: 1.2rem; color: var(--text-muted); max-width: 600px; margin-bottom: 40px; }
+        .hero p { font-size: 1.2rem; color: var(--text-muted); max-width: 700px; margin-bottom: 40px; }
         
-        .badge-container {
-            display: flex;
-            gap: 15px;
-            margin-bottom: 30px;
-        }
-        .badge {
-            background: rgba(255,255,255,0.1);
-            padding: 5px 15px;
-            border-radius: 4px;
-            font-size: 0.9rem;
-            border: 1px solid rgba(255,255,255,0.2);
-            color: var(--primary);
-        }
-
         /* Tracks */
         section { padding: 80px 10%; }
-        h2 { font-size: 2.5rem; margin-bottom: 3rem; text-align: center; }
-        h2 span { color: var(--primary); }
+        h2 { font-size: 2.5rem; margin-bottom: 3rem; text-align: center; color: #fff; }
+        h2 span { color: var(--primary); border-bottom: 3px solid var(--primary); padding-bottom: 10px;}
 
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); /* 卡片變寬，因為只有兩個 */
+            gap: 40px;
+            max-width: 1000px;
+            margin: 0 auto;
         }
         .card {
             background: var(--card-bg);
-            padding: 2.5rem;
-            border-radius: 16px;
+            padding: 3rem;
+            border-radius: 12px;
             border: 1px solid #333;
             transition: all 0.3s;
             position: relative;
             overflow: hidden;
+            display: flex;
+            flex-direction: column;
         }
         .card:hover { 
-            transform: translateY(-5px); 
             border-color: var(--primary);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            transform: translateY(-5px);
         }
-        .card::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 4px;
-            background: var(--primary);
-            transform: scaleX(0);
-            transition: transform 0.3s;
-            transform-origin: left;
-        }
-        .card:hover::before { transform: scaleX(1); }
         
-        .card h3 { font-size: 1.5rem; margin: 15px 0; }
-        .card ul { padding-left: 20px; color: var(--text-muted); margin-top: 15px; }
-        .card li { margin-bottom: 8px; }
+        .card h3 { font-size: 1.8rem; margin: 15px 0; color: #fff; }
+        .card-tag { 
+            display: inline-block; 
+            background: rgba(0, 180, 216, 0.1); 
+            color: var(--primary); 
+            padding: 5px 10px; 
+            border-radius: 4px; 
+            font-size: 0.8rem;
+            margin-bottom: 15px;
+            width: fit-content;
+        }
+        .card ul { padding-left: 20px; color: var(--text-muted); margin-top: 15px; flex-grow: 1; }
+        .card li { margin-bottom: 12px; }
 
-        /* Schedule */
-        .timeline {
-            position: relative;
-            max-width: 800px;
-            margin: 0 auto;
+        /* Schedule - Table Style for Clarity */
+        .schedule-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            color: #ddd;
         }
-        .timeline-item {
-            display: flex;
-            gap: 30px;
-            margin-bottom: 40px;
-            padding-bottom: 40px;
-            border-bottom: 1px solid #333;
+        .schedule-table th, .schedule-table td {
+            border: 1px solid #333;
+            padding: 15px;
+            text-align: left;
         }
-        .timeline-date {
-            min-width: 120px;
-            font-family: monospace;
-            font-size: 1.2rem;
+        .schedule-table th {
+            background-color: #222;
             color: var(--primary);
-            font-weight: bold;
-            text-align: right;
+            width: 150px;
         }
-        .timeline-content h4 { margin: 0 0 10px 0; font-size: 1.4rem; }
-        .timeline-content p { color: #999; margin: 0; }
+        .track-cell {
+            background-color: rgba(0, 180, 216, 0.05);
+        }
 
         /* FAQ */
         .faq-grid {
             display: grid;
             grid-template-columns: 1fr;
             gap: 20px;
-            max-width: 900px;
+            max-width: 800px;
             margin: 0 auto;
         }
         .faq-item {
             background: var(--card-bg);
-            border: 1px solid #333;
-            border-radius: 8px;
+            border-left: 4px solid var(--primary);
             padding: 20px;
         }
-        .faq-q { color: #fff; font-weight: bold; margin-bottom: 10px; display: block; }
+        .faq-q { color: #fff; font-weight: bold; display: block; margin-bottom: 8px; font-size: 1.1rem; }
         .faq-a { color: #aaa; font-size: 0.95rem; }
 
-        /* Footer */
         footer {
             text-align: center;
             padding: 50px;
-            background: #000;
+            background: #0a0a0c;
             color: #666;
             border-top: 1px solid #222;
-        }
-
-        /* 響應式 */
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 2.5rem; }
-            .timeline-item { flex-direction: column; gap: 10px; }
-            .timeline-date { text-align: left; }
         }
     </style>
 </head>
@@ -201,7 +181,7 @@
     <nav>
         <div class="logo">SCIST <span>2026</span></div>
         <div class="nav-links">
-            <a href="#tracks">三大主軸</a>
+            <a href="#tracks">核心課程</a>
             <a href="#schedule">活動議程</a>
             <a href="#faq">常見問題</a>
             <a href="https://docs.google.com/forms/d/e/1FAIpQLSeX88997wSKQ0K8wUMT4s4x3lprJeL_Jq2xO_jDmGvnq4mQPg/viewform" target="_blank" class="btn-register">立即報名</a>
@@ -209,51 +189,41 @@
     </nav>
 
     <header class="hero">
-        <div class="badge-container">
-            <span class="badge">📅 2026.02.05 - 02.08</span>
-            <span class="badge">📍 國立成功大學</span>
+        <div style="margin-bottom: 20px; font-family: monospace; color: var(--primary);">
+            &lt;Code Your Future /&gt;
         </div>
-        <h1>Empower Your Future<br>with Technology</h1>
-        <p>南臺灣最大的學生資訊社群聯合寒訓。<br>從演算法競賽到資安攻防，帶你探索資訊領域的無限可能。</p>
-        <div>
-            <a href="#tracks" style="color: #fff; text-decoration: underline; margin-right: 20px;">查看課程</a>
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLSeX88997wSKQ0K8wUMT4s4x3lprJeL_Jq2xO_jDmGvnq4mQPg/viewform" target="_blank" class="btn-register">JOIN US</a>
+        <h1>SCIST Winter Camp</h1>
+        <p>南臺灣最大的學生資訊社群。<br>專注於「演算法競賽」與「資訊安全攻防」，縮短南北資訊教育落差。</p>
+        <div style="margin-top: 20px;">
+            <a href="#tracks" class="btn-register" style="background: transparent; border: 1px solid #fff; color: #fff !important; margin-right: 15px;">了解課程</a>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSeX88997wSKQ0K8wUMT4s4x3lprJeL_Jq2xO_jDmGvnq4mQPg/viewform" target="_blank" class="btn-register">報名活動</a>
         </div>
     </header>
 
     <section id="tracks">
-        <h2>Camp Tracks <span>課程主軸</span></h2>
+        <h2>Core Tracks <span>兩大核心主軸</span></h2>
         <div class="grid">
             <div class="card">
-                <div style="font-size: 3rem; margin-bottom: 10px;">⚡</div>
+                <span class="card-tag">Competitive Programming</span>
                 <h3>Algorithms 演算法</h3>
-                <p style="color: #ccc;">針對 APCS 檢定與程式競賽設計，從 C++ 基礎語法到進階資料結構。</p>
+                <p style="color: #ccc;">從基礎語法到資料結構，目標是培養能獨立解決 APCS 實作題的能力。</p>
                 <ul>
-                    <li>基礎班：C++ 語法、迴圈、陣列 (目標 APCS 3級分)</li>
-                    <li>進階班：DP 動態規劃、圖論、貪婪演算法 (目標 APCS 4級分+)</li>
-                    <li>競程技巧：複雜度分析、STL 應用</li>
+                    <li><strong>C++ 基礎語法：</strong>變數、迴圈、陣列與函式，建立紮實程式邏輯。</li>
+                    <li><strong>資料結構：</strong>Vector, Stack, Queue, Set/Map 應用解析。</li>
+                    <li><strong>演算法策略：</strong>遞迴 (Recursion)、動態規劃 (DP)、貪婪法則 (Greedy)。</li>
+                    <li><strong>檢定目標：</strong>APCS 觀念 4 級分 / 實作 3 級分以上。</li>
                 </ul>
             </div>
             
             <div class="card">
-                <div style="font-size: 3rem; margin-bottom: 10px;">🛡️</div>
-                <h3>InfoSec 資訊安全</h3>
-                <p style="color: #ccc;">SCIST 招牌課程。實戰 CTF 搶旗賽，深入駭客攻防技術。</p>
+                <span class="card-tag">CTF / Cybersecurity</span>
+                <h3>Information Security 資訊安全</h3>
+                <p style="color: #ccc;">學習駭客思維與防禦技術，以參與 CTF 搶旗賽與 AIS3 為目標。</p>
                 <ul>
-                    <li>Web Security：SQL Injection, XSS 攻擊原理</li>
-                    <li>Cryptography：古典密碼與現代加密技術</li>
-                    <li>Reverse & Pwn：逆向工程與二進制漏洞分析</li>
-                </ul>
-            </div>
-
-            <div class="card">
-                <div style="font-size: 3rem; margin-bottom: 10px;">🧠</div>
-                <h3>AI & Deep Learning</h3>
-                <p style="color: #ccc;">探索機器學習與深度學習，實作能解決問題的 AI 模型。</p>
-                <ul>
-                    <li>Python 基礎與資料分析 (Pandas, NumPy)</li>
-                    <li>機器學習概論 (Supervised Learning)</li>
-                    <li>神經網路實作 (CNN, RNN) 與專題發表</li>
+                    <li><strong>Web Security：</strong>網頁漏洞分析 (SQL Injection, XSS) 與防護。</li>
+                    <li><strong>Cryptography：</strong>古典密碼學、現代加密與編碼原理 (Base64, RSA)。</li>
+                    <li><strong>Reverse & Pwn：</strong>逆向工程入門，分析二進制檔案漏洞。</li>
+                    <li><strong>競賽實戰：</strong>MyFirstCTF 賽制介紹與解題技巧實作。</li>
                 </ul>
             </div>
         </div>
@@ -261,40 +231,48 @@
 
     <section id="schedule">
         <h2>Schedule <span>議程規劃</span></h2>
-        <div class="timeline">
-            <div class="timeline-item">
-                <div class="timeline-date">Day 1<br>02/05 (Thu)</div>
-                <div class="timeline-content">
-                    <h4>Kickoff & Foundation</h4>
-                    <p>09:00 - 12:00 | 學員報到 / 開幕式 / 破冰活動</p>
-                    <p>13:30 - 17:00 | 各組基礎課程 (C++語法 / Linux指令 / Python環境)</p>
-                </div>
-            </div>
-            <div class="timeline-item">
-                <div class="timeline-date">Day 2<br>02/06 (Fri)</div>
-                <div class="timeline-content">
-                    <h4>Core Concepts</h4>
-                    <p>09:00 - 12:00 | 演算法實作 / Web 漏洞分析 / 機器學習模型</p>
-                    <p>13:30 - 17:00 | 分組專題發想 / 講師經驗分享會</p>
-                    <p>18:00 - 20:00 | 社群交流晚宴 (Pizza Night!)</p>
-                </div>
-            </div>
-            <div class="timeline-item">
-                <div class="timeline-date">Day 3<br>02/07 (Sat)</div>
-                <div class="timeline-content">
-                    <h4>Advanced & Challenge</h4>
-                    <p>09:00 - 16:00 | 進階主題課程 (圖論 / 逆向工程 / 深度學習)</p>
-                    <p>16:00 - 21:00 | <strong>SCIST CTF 奪旗賽 / 演算法模擬賽 / AI Hackathon</strong></p>
-                </div>
-            </div>
-            <div class="timeline-item">
-                <div class="timeline-date">Day 4<br>02/08 (Sun)</div>
-                <div class="timeline-content">
-                    <h4>Demo Day</h4>
-                    <p>09:00 - 12:00 | 專題成果發表會</p>
-                    <p>13:30 - 15:30 | 結業式 / 頒獎典禮 / 大合照</p>
-                </div>
-            </div>
+        <div style="max-width: 900px; margin: 0 auto; overflow-x: auto;">
+            <table class="schedule-table">
+                <thead>
+                    <tr>
+                        <th>日期 / 時間</th>
+                        <th>Algorithms (演算法組)</th>
+                        <th>InfoSec (資安組)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Day 1</strong><br>02/05 (Thu)</td>
+                        <td colspan="2" style="text-align: center;">09:00 - 12:00 | 學員報到 / 開幕式 / 破冰活動</td>
+                    </tr>
+                    <tr>
+                        <td>13:30 - 17:00</td>
+                        <td class="track-cell">C++ 環境建置 & 基礎語法<br><small>變數、輸入輸出、條件判斷</small></td>
+                        <td class="track-cell">Linux 基礎指令 & CTF 導論<br><small>虛擬機操作、駭客競賽規則</small></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Day 2</strong><br>02/06 (Fri)</td>
+                        <td class="track-cell">資料結構入門 (STL)<br><small>Vector, Stack, Queue</small></td>
+                        <td class="track-cell">Web Security 網頁安全<br><small>SQL Injection 原理與實作</small></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Day 3</strong><br>02/07 (Sat)</td>
+                        <td class="track-cell">演算法進階<br><small>遞迴與動態規劃 (DP) 基礎</small></td>
+                        <td class="track-cell">Cryptography 密碼學<br><small>古典密碼與 RSA 加密原理</small></td>
+                    </tr>
+                    <tr>
+                        <td>16:00 - 20:00</td>
+                        <td colspan="2" style="text-align: center; background: rgba(114, 9, 183, 0.2); border-color: var(--secondary);">
+                            <strong>🔥 SCIST Mini-CTF & Coding Contest</strong><br>
+                            <small>分組競賽 / 披薩交流晚會</small>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>Day 4</strong><br>02/08 (Sun)</td>
+                        <td colspan="2" style="text-align: center;">09:00 - 12:00 | 成果發表 / 結業式 / 頒獎</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </section>
 
@@ -303,19 +281,19 @@
         <div class="faq-grid">
             <div class="faq-item">
                 <span class="faq-q">Q: 完全沒有程式基礎可以參加嗎？</span>
-                <div class="faq-a">A: 沒問題！我們的「演算法基礎班」與「AI 入門班」都是專為新手設計的，講師會從環境安裝開始手把手教學。</div>
+                <div class="faq-a">A: 可以！我們的「演算法組」會從最基礎的 C++ 語法教起，非常適合新手入門。</div>
             </div>
             <div class="faq-item">
                 <span class="faq-q">Q: 參加這個營隊對 APCS 有幫助嗎？</span>
-                <div class="faq-a">A: 非常有幫助。演算法組的課程內容直接對應 APCS 觀念題與實作題，我們的目標是讓學員達到實作 3 級分以上的水準。</div>
+                <div class="faq-a">A: 絕對有幫助。SCIST 的演算法課程設計緊扣 APCS 檢定內容，我們的目標是協助學員在觀念與實作題上都能拿到好成績。</div>
             </div>
             <div class="faq-item">
-                <span class="faq-q">Q: 需要自備筆電嗎？</span>
-                <div class="faq-a">A: 是的，請務必攜帶筆記型電腦 (Windows/Mac/Linux 皆可) 及充電器。現場會提供 Wi-Fi 與延長線。</div>
+                <span class="faq-q">Q: 資安組需要很強的程式能力嗎？</span>
+                <div class="faq-a">A: 不需要很高深的程式能力，但建議對電腦系統運作有好奇心。我們會從 Linux 指令與網頁原理開始引導。</div>
             </div>
             <div class="faq-item">
-                <span class="faq-q">Q: 報名費包含住宿嗎？</span>
-                <div class="faq-a">A: 一般票僅包含課程與午餐。若需要住宿，請購買「住宿票」，我們將統一安排在台南火車站附近的優質青年旅舍。</div>
+                <span class="faq-q">Q: 需要自備電腦嗎？</span>
+                <div class="faq-a">A: 是的，請務必自備筆記型電腦（Windows/Mac/Linux 皆可）。現場會提供 Wi-Fi 與延長線。</div>
             </div>
         </div>
     </section>
@@ -323,7 +301,7 @@
     <footer>
         <p><strong>SCIST 南臺灣學生資訊社群</strong></p>
         <p>Students' Community of Information in Southern Taiwan</p>
-        <p style="margin-top: 20px; font-size: 0.8rem; color: #444;">&copy; 2026 SCIST Winter Camp. All Rights Reserved.</p>
+        <p style="margin-top: 20px; font-size: 0.8rem; color: #555;">&copy; 2026 SCIST. All Rights Reserved.</p>
     </footer>
 
 </body>
