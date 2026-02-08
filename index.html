@@ -3,17 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>2026 SCIST Winter Camp | 智慧網路與互連技術實作</title>
+    <title>2026 SCIST Winter Camp | 南臺灣學生資訊社群</title>
     <style>
         :root {
-            /* 調整為更具備網通設備感的冷色調 */
-            --primary: #00f2ff; /* Cyber Cyan */
-            --secondary: #7000ff; /* Deep Network Purple */
-            --accent: #ff0055; /* Alert Red for Security */
-            --bg-dark: #050505;
-            --card-bg: #111;
+            /* SCIST 品牌色系：科技藍與資安綠 */
+            --primary: #4cc9f0; /* Cyber Blue */
+            --secondary: #7209b7; /* Deep Purple */
+            --accent: #f72585; /* Highlight Pink */
             --text-main: #f0f0f0;
             --text-muted: #a0a0a0;
+            --bg-dark: #0f0f13;
+            --card-bg: #1a1a20;
         }
 
         body {
@@ -22,11 +22,9 @@
             color: var(--text-main);
             margin: 0;
             line-height: 1.6;
-            /* 背景紋理：電路板與封包流動意象 */
             background-image: 
-                linear-gradient(rgba(0, 242, 255, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0, 242, 255, 0.03) 1px, transparent 1px);
-            background-size: 40px 40px;
+                radial-gradient(circle at 10% 20%, rgba(76, 201, 240, 0.05) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(247, 37, 133, 0.05) 0%, transparent 20%);
         }
 
         /* 導覽列 */
@@ -35,44 +33,40 @@
             justify-content: space-between;
             align-items: center;
             padding: 1rem 5%;
-            background: rgba(5, 5, 5, 0.95);
+            background: rgba(15, 15, 19, 0.95);
             backdrop-filter: blur(10px);
             position: sticky;
             top: 0;
             z-index: 1000;
-            border-bottom: 1px solid rgba(0, 242, 255, 0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
-        .logo { font-size: 1.5rem; font-weight: 700; color: var(--text-main); letter-spacing: 1px;}
+        .logo { font-size: 1.5rem; font-weight: 700; letter-spacing: 1px; color: #fff; }
         .logo span { color: var(--primary); }
+        
         .nav-links a {
             color: var(--text-main);
             text-decoration: none;
             margin-left: 2rem;
             font-weight: 500;
             transition: color 0.3s;
-            font-size: 0.9rem;
-            text-transform: uppercase;
+            font-size: 0.95rem;
         }
         .nav-links a:hover { color: var(--primary); }
+        
         .btn-register {
-            background: var(--primary);
+            background: linear-gradient(135deg, var(--primary), #4895ef);
             color: #000 !important;
             padding: 0.6rem 1.8rem;
-            border-radius: 4px;
+            border-radius: 50px;
             font-weight: 700;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            box-shadow: 0 0 15px rgba(0, 242, 255, 0.2);
+            box-shadow: 0 4px 15px rgba(76, 201, 240, 0.3);
+            transition: transform 0.2s;
         }
-        .btn-register:hover { 
-            transform: translateY(-2px);
-            box-shadow: 0 0 25px rgba(0, 242, 255, 0.6);
-            background: #fff;
-        }
+        .btn-register:hover { transform: translateY(-2px); }
 
-        /* 主視覺 Hero */
+        /* Hero */
         .hero {
-            min-height: 90vh;
+            min-height: 85vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -80,219 +74,126 @@
             text-align: center;
             padding: 0 20px;
             position: relative;
-            overflow: hidden;
         }
-        /* 背景光暈效果 */
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 700px;
-            height: 500px;
-            background: radial-gradient(ellipse, rgba(0,242,255,0.08) 0%, transparent 70%);
-            z-index: -1;
-        }
-
         .hero h1 {
-            font-size: 3.5rem;
-            margin: 0;
+            font-size: 3.8rem;
+            margin: 0 0 20px 0;
             line-height: 1.2;
-            text-transform: uppercase;
             background: linear-gradient(90deg, #fff, var(--primary));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            margin-bottom: 1rem;
-            max-width: 900px;
         }
-        .hero p { font-size: 1.25rem; color: var(--text-muted); max-width: 700px; margin-bottom: 2rem; }
+        .hero p { font-size: 1.2rem; color: var(--text-muted); max-width: 600px; margin-bottom: 40px; }
         
-        .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            padding: 8px 16px;
-            background: rgba(0, 242, 255, 0.05);
-            border: 1px solid rgba(0, 242, 255, 0.2);
-            border-radius: 50px;
-            color: var(--primary);
-            font-family: monospace;
-            margin-bottom: 20px;
-            font-size: 0.9rem;
-        }
-
-        /* 倒數計時器 */
-        .countdown-container {
+        .badge-container {
             display: flex;
             gap: 15px;
-            margin: 30px 0;
+            margin-bottom: 30px;
         }
-        .time-box {
-            background: rgba(0,0,0,0.6);
-            border: 1px solid var(--primary);
-            padding: 15px 20px;
+        .badge {
+            background: rgba(255,255,255,0.1);
+            padding: 5px 15px;
             border-radius: 4px;
-            text-align: center;
-            min-width: 70px;
-            box-shadow: 0 0 10px rgba(0,242,255,0.1);
+            font-size: 0.9rem;
+            border: 1px solid rgba(255,255,255,0.2);
+            color: var(--primary);
         }
-        .time-num { font-size: 1.8rem; font-weight: bold; color: #fff; font-family: 'Courier New', monospace; }
-        .time-txt { font-size: 0.7rem; color: var(--primary); text-transform: uppercase; letter-spacing: 1px; margin-top: 5px; }
 
-        /* 區塊通用 */
+        /* Tracks */
         section { padding: 80px 10%; }
-        h2 { 
-            font-size: 2.2rem; 
-            margin-bottom: 3rem; 
-            display: flex; 
-            align-items: center; 
-            gap: 15px;
-        }
-        h2::before {
-            content: '';
-            display: block;
-            width: 6px;
-            height: 35px;
-            background: var(--primary);
-            box-shadow: 0 0 10px var(--primary);
-        }
+        h2 { font-size: 2.5rem; margin-bottom: 3rem; text-align: center; }
+        h2 span { color: var(--primary); }
 
-        /* 格狀佈局 */
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
         }
         .card {
             background: var(--card-bg);
             padding: 2.5rem;
-            border-radius: 8px;
-            border: 1px solid #222;
-            transition: transform 0.3s, border-color 0.3s;
+            border-radius: 16px;
+            border: 1px solid #333;
+            transition: all 0.3s;
             position: relative;
             overflow: hidden;
         }
         .card:hover { 
             transform: translateY(-5px); 
-            border-color: var(--primary); 
+            border-color: var(--primary);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
-        /* 裝飾線條 */
-        .card::after {
+        .card::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background: linear-gradient(90deg, var(--primary), transparent);
-            opacity: 0.5;
+            top: 0; left: 0; width: 100%; height: 4px;
+            background: var(--primary);
+            transform: scaleX(0);
+            transition: transform 0.3s;
+            transform-origin: left;
         }
+        .card:hover::before { transform: scaleX(1); }
+        
+        .card h3 { font-size: 1.5rem; margin: 15px 0; }
+        .card ul { padding-left: 20px; color: var(--text-muted); margin-top: 15px; }
+        .card li { margin-bottom: 8px; }
 
-        .card h3 { color: #fff; font-size: 1.5rem; margin-top: 10px; }
-        .track-icon { font-size: 2.5rem; margin-bottom: 1rem; display: block; color: var(--primary); }
-
-        /* 課表 */
-        .schedule-item {
+        /* Schedule */
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .timeline-item {
             display: flex;
-            padding: 25px 0;
-            border-bottom: 1px solid #222;
-            align-items: flex-start;
-            flex-wrap: wrap;
+            gap: 30px;
+            margin-bottom: 40px;
+            padding-bottom: 40px;
+            border-bottom: 1px solid #333;
         }
-        .date-col { width: 140px; font-family: monospace; color: var(--primary); font-weight: bold; font-size: 1.1rem; border-right: 2px solid #222; margin-right: 20px; padding-right: 10px;}
-        .info-col { flex: 1; min-width: 300px; }
-        .info-col h4 { margin: 0 0 8px 0; color: #fff; font-size: 1.3rem; display: flex; align-items: center; gap: 10px; }
-        .info-col p { margin: 0; color: #999; font-size: 1rem; line-height: 1.5; }
-        .tag-pill {
-            font-size: 0.75rem;
-            padding: 2px 8px;
-            border-radius: 4px;
-            background: rgba(255,255,255,0.1);
-            color: #ddd;
-            margin-left: auto;
+        .timeline-date {
+            min-width: 120px;
+            font-family: monospace;
+            font-size: 1.2rem;
+            color: var(--primary);
+            font-weight: bold;
+            text-align: right;
         }
+        .timeline-content h4 { margin: 0 0 10px 0; font-size: 1.4rem; }
+        .timeline-content p { color: #999; margin: 0; }
 
         /* FAQ */
         .faq-grid {
             display: grid;
             grid-template-columns: 1fr;
-            gap: 15px;
+            gap: 20px;
             max-width: 900px;
             margin: 0 auto;
         }
-        .faq-box {
+        .faq-item {
             background: var(--card-bg);
-            border: 1px solid #222;
-            border-radius: 4px;
-            overflow: hidden;
-        }
-        .faq-q {
-            padding: 20px;
-            cursor: pointer;
-            font-weight: 600;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            color: #fff;
-        }
-        .faq-q span { color: var(--primary); font-size: 1.2rem; }
-        .faq-a {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease;
-            padding: 0 20px;
-            color: #ccc;
-            font-size: 0.95rem;
-            line-height: 1.6;
-            border-top: 1px solid transparent;
-        }
-        .faq-box.open .faq-a { max-height: 200px; padding-bottom: 20px; border-top: 1px solid #222; }
-        .faq-box.open .faq-q { color: var(--primary); }
-
-        /* CTA */
-        .cta-box {
-            background: linear-gradient(180deg, #0a0a0a, #111);
-            text-align: center;
-            border-top: 1px solid #222;
-            padding: 100px 20px;
-        }
-        .price-card {
             border: 1px solid #333;
-            padding: 30px;
-            border-radius: 10px;
-            background: rgba(20,20,20,0.8);
-            position: relative;
-            max-width: 400px;
-            margin: 0 auto;
+            border-radius: 8px;
+            padding: 20px;
         }
-        .price-card.featured { border-color: var(--primary); box-shadow: 0 0 20px rgba(0,242,255,0.1); }
-        .price-card.featured::after {
-            content: 'RECOMMENDED';
-            position: absolute;
-            top: 0;
-            right: 0;
-            background: var(--primary);
-            color: #000;
-            font-size: 0.7rem;
-            font-weight: bold;
-            padding: 5px 10px;
-            border-bottom-left-radius: 10px;
-        }
-        .price { font-size: 2.5rem; font-weight: bold; color: #fff; margin: 15px 0; }
-        .price span { font-size: 1rem; color: #666; font-weight: normal; }
+        .faq-q { color: #fff; font-weight: bold; margin-bottom: 10px; display: block; }
+        .faq-a { color: #aaa; font-size: 0.95rem; }
 
+        /* Footer */
         footer {
-            background: #000;
-            padding: 50px 10%;
             text-align: center;
-            border-top: 1px solid #222;
-            font-size: 0.9rem;
+            padding: 50px;
+            background: #000;
             color: #666;
+            border-top: 1px solid #222;
         }
-        
-        /* Utility */
-        .highlight { color: var(--primary); }
+
+        /* 響應式 */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .timeline-item { flex-direction: column; gap: 10px; }
+            .timeline-date { text-align: left; }
+        }
     </style>
 </head>
 <body>
@@ -300,193 +201,130 @@
     <nav>
         <div class="logo">SCIST <span>2026</span></div>
         <div class="nav-links">
-            <a href="#tracks">技術主軸</a>
-            <a href="#schedule">實作議程</a>
+            <a href="#tracks">三大主軸</a>
+            <a href="#schedule">活動議程</a>
             <a href="#faq">常見問題</a>
             <a href="https://docs.google.com/forms/d/e/1FAIpQLSeX88997wSKQ0K8wUMT4s4x3lprJeL_Jq2xO_jDmGvnq4mQPg/viewform" target="_blank" class="btn-register">立即報名</a>
         </div>
     </nav>
 
     <header class="hero">
-        <div class="hero-badge">
-            <span>📡 智慧網路架構</span>
-            <span>|</span>
-            <span>🔒 資安攻防實作</span>
+        <div class="badge-container">
+            <span class="badge">📅 2026.02.05 - 02.08</span>
+            <span class="badge">📍 國立成功大學</span>
         </div>
-        <h1>Smart Network &<br>Interconnection</h1>
-        <p>不只是寫程式，更要建構連結世界的基礎設施。<br>深入 OSI 模型底層，掌握路由器配置、IoT 互連與封包分析技術。</p>
-        
-        <div class="countdown-container" id="countdown">
-            <div class="time-box">
-                <div class="time-num" id="days">00</div>
-                <div class="time-txt">Days</div>
-            </div>
-            <div class="time-box">
-                <div class="time-num" id="hours">00</div>
-                <div class="time-txt">Hours</div>
-            </div>
-            <div class="time-box">
-                <div class="time-num" id="mins">00</div>
-                <div class="time-txt">Mins</div>
-            </div>
-            <div class="time-box">
-                <div class="time-num" id="secs">00</div>
-                <div class="time-txt">Secs</div>
-            </div>
-        </div>
-
-        <div style="margin-top: 30px;">
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLSeX88997wSKQ0K8wUMT4s4x3lprJeL_Jq2xO_jDmGvnq4mQPg/viewform" target="_blank" class="btn-register" style="font-size: 1.2rem; padding: 15px 40px;">
-                START HACKING
-            </a>
+        <h1>Empower Your Future<br>with Technology</h1>
+        <p>南臺灣最大的學生資訊社群聯合寒訓。<br>從演算法競賽到資安攻防，帶你探索資訊領域的無限可能。</p>
+        <div>
+            <a href="#tracks" style="color: #fff; text-decoration: underline; margin-right: 20px;">查看課程</a>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSeX88997wSKQ0K8wUMT4s4x3lprJeL_Jq2xO_jDmGvnq4mQPg/viewform" target="_blank" class="btn-register">JOIN US</a>
         </div>
     </header>
 
     <section id="tracks">
-        <h2>Core Technologies 技術主軸</h2>
+        <h2>Camp Tracks <span>課程主軸</span></h2>
         <div class="grid">
             <div class="card">
-                <span class="track-icon">🌐</span>
-                <h3>Network Infrastructure</h3>
-                <p style="color:var(--text-muted);">跳脫書本理論，親手觸碰路由器與交換器。實作 VLAN 切割、Static/Dynamic Routing 與 Subnetting，建構穩定的企業級網路。</p>
+                <div style="font-size: 3rem; margin-bottom: 10px;">⚡</div>
+                <h3>Algorithms 演算法</h3>
+                <p style="color: #ccc;">針對 APCS 檢定與程式競賽設計，從 C++ 基礎語法到進階資料結構。</p>
+                <ul>
+                    <li>基礎班：C++ 語法、迴圈、陣列 (目標 APCS 3級分)</li>
+                    <li>進階班：DP 動態規劃、圖論、貪婪演算法 (目標 APCS 4級分+)</li>
+                    <li>競程技巧：複雜度分析、STL 應用</li>
+                </ul>
             </div>
+            
             <div class="card">
-                <span class="track-icon">🔗</span>
-                <h3>IoT Interconnection</h3>
-                <p style="color:var(--text-muted);">探索物聯網互連技術。使用 MQTT 與 CoAP 協定，將感測器數據上雲，並結合 Edge Computing 實現智慧化控制。</p>
+                <div style="font-size: 3rem; margin-bottom: 10px;">🛡️</div>
+                <h3>InfoSec 資訊安全</h3>
+                <p style="color: #ccc;">SCIST 招牌課程。實戰 CTF 搶旗賽，深入駭客攻防技術。</p>
+                <ul>
+                    <li>Web Security：SQL Injection, XSS 攻擊原理</li>
+                    <li>Cryptography：古典密碼與現代加密技術</li>
+                    <li>Reverse & Pwn：逆向工程與二進制漏洞分析</li>
+                </ul>
             </div>
+
             <div class="card">
-                <span class="track-icon">🛡️</span>
-                <h3>Traffic Analysis</h3>
-                <p style="color:var(--text-muted);">看見看不見的流量。利用 Wireshark 進行封包側錄與分析，揪出網路中的異常行為與潛在資安威脅。</p>
+                <div style="font-size: 3rem; margin-bottom: 10px;">🧠</div>
+                <h3>AI & Deep Learning</h3>
+                <p style="color: #ccc;">探索機器學習與深度學習，實作能解決問題的 AI 模型。</p>
+                <ul>
+                    <li>Python 基礎與資料分析 (Pandas, NumPy)</li>
+                    <li>機器學習概論 (Supervised Learning)</li>
+                    <li>神經網路實作 (CNN, RNN) 與專題發表</li>
+                </ul>
             </div>
         </div>
     </section>
 
     <section id="schedule">
-        <h2>Implementation Schedule 實作議程</h2>
-        <div class="schedule-item">
-            <div class="date-col">Day 1<br>02/05 (Thu)</div>
-            <div class="info-col">
-                <h4>Network Fundamentals <span class="tag-pill">Physical/DataLink</span></h4>
-                <p>OSI 模型實戰解析 / 網路線製作 (RJ45) / IP Addressing 與 Subnetting 計算 / 基礎網路指令 (Ping, Traceroute)</p>
+        <h2>Schedule <span>議程規劃</span></h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-date">Day 1<br>02/05 (Thu)</div>
+                <div class="timeline-content">
+                    <h4>Kickoff & Foundation</h4>
+                    <p>09:00 - 12:00 | 學員報到 / 開幕式 / 破冰活動</p>
+                    <p>13:30 - 17:00 | 各組基礎課程 (C++語法 / Linux指令 / Python環境)</p>
+                </div>
             </div>
-        </div>
-        <div class="schedule-item">
-            <div class="date-col">Day 2<br>02/06 (Fri)</div>
-            <div class="info-col">
-                <h4>Routing & Switching <span class="tag-pill">Network Layer</span></h4>
-                <p>Cisco Packet Tracer 模擬實戰 / VLAN 虛擬區域網路設定 / 靜態路由與 OSPF 協定 / DHCP Server 架設</p>
+            <div class="timeline-item">
+                <div class="timeline-date">Day 2<br>02/06 (Fri)</div>
+                <div class="timeline-content">
+                    <h4>Core Concepts</h4>
+                    <p>09:00 - 12:00 | 演算法實作 / Web 漏洞分析 / 機器學習模型</p>
+                    <p>13:30 - 17:00 | 分組專題發想 / 講師經驗分享會</p>
+                    <p>18:00 - 20:00 | 社群交流晚宴 (Pizza Night!)</p>
+                </div>
             </div>
-        </div>
-        <div class="schedule-item">
-            <div class="date-col">Day 3<br>02/07 (Sat)</div>
-            <div class="info-col">
-                <h4>IoT & Security <span class="tag-pill">Application Layer</span></h4>
-                <p>Wireshark 封包分析 / ARP Spoofing 原理與防禦 / MQTT 物聯網協定實作 / 智慧家庭網路專題發想</p>
+            <div class="timeline-item">
+                <div class="timeline-date">Day 3<br>02/07 (Sat)</div>
+                <div class="timeline-content">
+                    <h4>Advanced & Challenge</h4>
+                    <p>09:00 - 16:00 | 進階主題課程 (圖論 / 逆向工程 / 深度學習)</p>
+                    <p>16:00 - 21:00 | <strong>SCIST CTF 奪旗賽 / 演算法模擬賽 / AI Hackathon</strong></p>
+                </div>
             </div>
-        </div>
-        <div class="schedule-item">
-            <div class="date-col">Day 4<br>02/08 (Sun)</div>
-            <div class="info-col">
-                <h4>Smart Campus Project <span class="tag-pill">Demo Day</span></h4>
-                <p>分組專題實作：建構智慧校園網路系統 / 壓力測試與攻防演練 / 成果發表與結業式</p>
+            <div class="timeline-item">
+                <div class="timeline-date">Day 4<br>02/08 (Sun)</div>
+                <div class="timeline-content">
+                    <h4>Demo Day</h4>
+                    <p>09:00 - 12:00 | 專題成果發表會</p>
+                    <p>13:30 - 15:30 | 結業式 / 頒獎典禮 / 大合照</p>
+                </div>
             </div>
         </div>
     </section>
 
     <section id="faq">
-        <h2>FAQ 常見問題</h2>
+        <h2>FAQ <span>常見問題</span></h2>
         <div class="faq-grid">
-            <div class="faq-box">
-                <div class="faq-q">Q: 電腦需要有網路孔 (RJ45) 嗎？ <span>+</span></div>
-                <div class="faq-a">A: <strong>強烈建議！</strong> 由於會操作實體網路設備，若您的筆電（如 Mac）沒有網路孔，請務必自備 USB 轉 RJ45 的轉接頭 (Dongle)。</div>
+            <div class="faq-item">
+                <span class="faq-q">Q: 完全沒有程式基礎可以參加嗎？</span>
+                <div class="faq-a">A: 沒問題！我們的「演算法基礎班」與「AI 入門班」都是專為新手設計的，講師會從環境安裝開始手把手教學。</div>
             </div>
-            <div class="faq-box">
-                <div class="faq-q">Q: 完全不懂 Linux 可以參加嗎？ <span>+</span></div>
-                <div class="faq-a">A: 可以。我們會從最基礎的 CLI 指令教起，但若您事先接觸過 Linux 基礎操作（如 Ubuntu/Kali），上手速度會更快。</div>
+            <div class="faq-item">
+                <span class="faq-q">Q: 參加這個營隊對 APCS 有幫助嗎？</span>
+                <div class="faq-a">A: 非常有幫助。演算法組的課程內容直接對應 APCS 觀念題與實作題，我們的目標是讓學員達到實作 3 級分以上的水準。</div>
             </div>
-            <div class="faq-box">
-                <div class="faq-q">Q: 會碰到實體機器嗎？還是只有模擬器？ <span>+</span></div>
-                <div class="faq-a">A: 兩者皆有！我們會使用 Cisco Packet Tracer 進行大規模架構模擬，同時也會提供真實的 Router 與 Switch 讓大家練習接線與 Console 設定。</div>
+            <div class="faq-item">
+                <span class="faq-q">Q: 需要自備筆電嗎？</span>
+                <div class="faq-a">A: 是的，請務必攜帶筆記型電腦 (Windows/Mac/Linux 皆可) 及充電器。現場會提供 Wi-Fi 與延長線。</div>
             </div>
-            <div class="faq-box">
-                <div class="faq-q">Q: 住宿地點有網路嗎？ <span>+</span></div>
-                <div class="faq-a">A: 老曼船長青年旅舍提供免費 Wi-Fi。不過既來之則安之，我們鼓勵大家晚上進行「實體社交」，或利用自己的熱點進行測試。</div>
-            </div>
-            <div class="faq-box">
-                <div class="faq-q">Q: 參加後能學會「駭客」技術嗎？ <span>+</span></div>
-                <div class="faq-a">A: 我們教導的是「防禦型」的網路知識。了解攻擊原理（如 ARP Spoofing, MITM）是為了更好的設定防火牆與網路規則，請勿用於非法用途。</div>
-            </div>
-        </div>
-    </section>
-
-    <section class="cta-box">
-        <h2 style="justify-content: center; margin-bottom: 10px;">Build Your Network</h2>
-        <p style="color:#888; margin-bottom: 40px;">名額有限，報名截止至 2025/12/31</p>
-        
-        <div class="grid" style="max-width: 900px; margin: 0 auto; text-align: left;">
-            <div class="price-card">
-                <h4 style="margin:0; color:#fff;">一般票 General</h4>
-                <div class="price">NT$ 2,500</div>
-                <ul style="color:#aaa; padding-left: 20px; margin-bottom: 20px;">
-                    <li>四天完整實作課程</li>
-                    <li>午餐與茶點</li>
-                    <li>設備使用費與保險</li>
-                </ul>
-                <a href="https://docs.google.com/forms/d/e/1FAIpQLSeX88997wSKQ0K8wUMT4s4x3lprJeL_Jq2xO_jDmGvnq4mQPg/viewform" target="_blank" class="btn-register" style="display:block; text-align:center;">立即報名</a>
-            </div>
-            <div class="price-card featured">
-                <h4 style="margin:0; color:var(--primary);">住宿票 With Stay</h4>
-                <div class="price">NT$ 4,500</div>
-                <ul style="color:#aaa; padding-left: 20px; margin-bottom: 20px;">
-                    <li>包含一般票所有權益</li>
-                    <li><strong>三晚住宿</strong> (老曼船長)</li>
-                    <li>晚間 Lab 實驗室使用權</li>
-                </ul>
-                <a href="https://docs.google.com/forms/d/e/1FAIpQLSeX88997wSKQ0K8wUMT4s4x3lprJeL_Jq2xO_jDmGvnq4mQPg/viewform" target="_blank" class="btn-register" style="display:block; text-align:center; background:var(--primary); color:#000;">立即報名</a>
+            <div class="faq-item">
+                <span class="faq-q">Q: 報名費包含住宿嗎？</span>
+                <div class="faq-a">A: 一般票僅包含課程與午餐。若需要住宿，請購買「住宿票」，我們將統一安排在台南火車站附近的優質青年旅舍。</div>
             </div>
         </div>
     </section>
 
     <footer>
-        <p><strong>Students' Community of Information in Southern Taiwan (SCIST)</strong></p>
-        <p>南臺灣學生資訊社群 | 致力於縮短南北資訊教育落差</p>
-        <p style="margin-top: 20px; font-size: 0.8rem;">Project for NCKU 114-1 Capstone Course: Smart Network Architecture Implementation</p>
-        <p>&copy; 2026 SCIST. All Rights Reserved.</p>
+        <p><strong>SCIST 南臺灣學生資訊社群</strong></p>
+        <p>Students' Community of Information in Southern Taiwan</p>
+        <p style="margin-top: 20px; font-size: 0.8rem; color: #444;">&copy; 2026 SCIST Winter Camp. All Rights Reserved.</p>
     </footer>
 
-    <script>
-        // FAQ 開關邏輯
-        const faqs = document.querySelectorAll('.faq-box');
-        faqs.forEach(faq => {
-            faq.querySelector('.faq-q').addEventListener('click', () => {
-                faq.classList.toggle('open');
-            });
-        });
-
-        // 倒數計時器 (目標：2025/12/31)
-        const deadline = new Date("Dec 31, 2025 23:59:59").getTime();
-        const timer = setInterval(() => {
-            const now = new Date().getTime();
-            const diff = deadline - now;
-
-            if (diff < 0) {
-                clearInterval(timer);
-                document.getElementById("countdown").innerHTML = "<div style='color:var(--primary); font-size:1.5rem; border:1px solid var(--primary); padding:10px 20px;'>REGISTRATION CLOSED</div>";
-                return;
-            }
-
-            const d = Math.floor(diff / (1000 * 60 * 60 * 24));
-            const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-            const s = Math.floor((diff % (1000 * 60)) / 1000);
-
-            document.getElementById("days").innerText = d < 10 ? "0" + d : d;
-            document.getElementById("hours").innerText = h < 10 ? "0" + h : h;
-            document.getElementById("mins").innerText = m < 10 ? "0" + m : m;
-            document.getElementById("secs").innerText = s < 10 ? "0" + s : s;
-        }, 1000);
-    </script>
 </body>
 </html>
